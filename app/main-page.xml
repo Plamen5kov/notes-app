@@ -19,7 +19,7 @@ https://docs.nativescript.org/ui/components.
     <ListView row="2" id="firstListView" items="{{ myItems }}" itemTap="listViewItemTap" class="list-group" />
     <Label row="3" text="Define the ListView itemTemplate property" textWrap="true" />
     <Button row="4" text="Add new item (Second ListView)" tap="onSecondTap" />
-    <ListView row="5" items="{{ mySecondItems }}" itemTap="secondListViewItemTap" class="list-group" id="lv_notes">
+    <ListView row="5" items="{{ mySecondItems }}" itemTap="onItemTap" class="list-group" id="lv_notes">
         <ListView.itemTemplate>
             <StackLayout class="list-group-item">
                 <Label text="{{ title || 'Downloading...' }}" textWrap="true" class="title" />

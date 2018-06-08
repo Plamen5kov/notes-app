@@ -8,7 +8,6 @@
             "platform": "android",
             "appRoot": "${workspaceRoot}",
             "sourceMaps": true,
-            "stopOnEntry": true,
             "watch": true
         },
         {
