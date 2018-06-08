@@ -11,6 +11,7 @@ https://docs.nativescript.org/ui/components.
     -->
     <Page.actionBar>
         <ActionBar title="My App" icon="" class="action-bar">
+            <ActionItem tap="onAdd" ios.systemIcon="16" android.systemIcon="ic_add" ios.position="right" text="+"></ActionItem>       
         </ActionBar>
     </Page.actionBar>
 

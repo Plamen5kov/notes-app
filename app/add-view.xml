@@ -12,9 +12,10 @@ https://docs.nativescript.org/ui/components.
     <Page.actionBar>
         <ActionBar title="My App" icon="" class="action-bar">
             <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"/>
+            <ActionItem tap="onAdd" ios.systemIcon="16" android.systemIcon="ic_input_add" ios.position="right" text="+" android.position="popup"></ActionItem>       
         </ActionBar>
-        
+
     </Page.actionBar>
 
-    <Label id="details_info" />
+    <TextField>asdasd</TextField>
 </Page>

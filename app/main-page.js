@@ -50,5 +50,16 @@ function onItemTap(args) {
   Frame.topmost().navigate(navigationContext);
 }
 
+function onAdd(args) {
+  var navigationContext = {
+    moduleName: "add-view",
+    context: {
+      info: "asdasdlhaj"
+    }
+  };
+  Frame.topmost().navigate(navigationContext);
+}
+
+exports.onAdd = onAdd;
 exports.onItemTap = onItemTap;
 exports.onNavigatingTo = onNavigatingTo;
