@@ -1,9 +1,9 @@
 const ObservableArray = require("tns-core-modules/data/observable-array")
   .ObservableArray;
 const Observable = require("tns-core-modules/data/observable").Observable;
+const Frame = require("ui/frame");
 
 const colors = ["red", "green", "blue"];
-debugger;
 const secondArray = new ObservableArray([
   {
     title: "The Da Vinci Code"
@@ -25,10 +25,9 @@ const secondArray = new ObservableArray([
   }
 ]);
 function onNavigatingTo(args) {
-  debugger;
   const page = args.object;
   const vm = new Observable();
-  var notesList = page.findViewById("lv_notes");
+  var notesList = page.getViewById("lv_notes");
   console.log(notesList);
   notesList.refresh();
 
@@ -38,4 +37,4 @@ function onNavigatingTo(args) {
   page.bindingContext = vm;
 }
 
-module.export = onNavigatingTo;
+exports.onNavigatingTo = onNavigatingTo;
