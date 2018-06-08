@@ -13,20 +13,17 @@ https://docs.nativescript.org/ui/components.
         <ActionBar title="My App" icon="" class="action-bar">
         </ActionBar>
     </Page.actionBar>
-    <!--
-    The StackLayout stacks UI components on the screen—either vertically or horizontally.
-    In this case, the StackLayout does vertical stacking; you can change the stacking to
-    horizontal by applying a orientation="horizontal" attribute to the <StackLayout> element.
-    You can learn more about NativeScript layouts at
-    https://docs.nativescript.org/ui/layout-containers.
 
-    These components make use of several CSS class names that are part of the NativeScript
-    core theme, such as p-20, btn, h2, and text-center. You can view a full list of the
-    class names available for styling your app at https://docs.nativescript.org/ui/theme.
-    -->
-    <StackLayout class="p-20">
-        <Label text="Tap the button" class="h1 text-center"/>
-        <Button text="TAP" tap="{{ onTap }}" class="btn btn-primary btn-active"/>
-        <Label text="{{ message }}" class="h2 text-center" textWrap="true"/>
-    </StackLayout>
+    <Label row="0" text="Binding the ListView items property to collection" textWrap="true" />
+    <Button row="1" text="Add new item" tap="onTap" />
+    <ListView row="2" id="firstListView" items="{{ myItems }}" itemTap="listViewItemTap" class="list-group" />
+    <Label row="3" text="Define the ListView itemTemplate property" textWrap="true" />
+    <Button row="4" text="Add new item (Second ListView)" tap="onSecondTap" />
+    <ListView row="5" items="{{ mySecondItems }}" itemTap="secondListViewItemTap" class="list-group" id="lv_notes">
+        <ListView.itemTemplate>
+            <StackLayout class="list-group-item">
+                <Label text="{{ title || 'Downloading...' }}" textWrap="true" class="title" />
+            </StackLayout>
+        </ListView.itemTemplate>
+    </ListView>
 </Page>
