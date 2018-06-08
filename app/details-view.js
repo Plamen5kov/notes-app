@@ -9,6 +9,6 @@ function onNavigatingTo(args) {
 function onNavBtnTap(args) {
   Frame.topmost().goBack();
 }
-exports.onNavBtnTap = onNavBtnTap;
 
+exports.onNavBtnTap = onNavBtnTap;
 exports.onNavigatingTo = onNavigatingTo;
