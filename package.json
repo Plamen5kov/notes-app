@@ -11,6 +11,7 @@
 	},
 	"dependencies": {
 		"nativescript-background-http": "^3.2.7",
+		"nativescript-facebook": "^2.2.2",
 		"nativescript-plugin-firebase": "^6.1.1",
 		"nativescript-theme-core": "~1.0.4",
 		"tns-core-modules": "~4.1.0"
