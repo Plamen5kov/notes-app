@@ -1,3 +1,6 @@
+# NS SPECIFIC FILES
+platforms/
+
 # Logs
 logs
 *.log
