@@ -4,10 +4,19 @@
 	"readme": "NativeScript Application",
 	"repository": "<fill-your-repository-here>",
 	"nativescript": {
-		"id": "org.nativescript.notesapp"
+		"id": "org.nativescript.notesapp",
+		"tns-android": {
+			"version": "4.1.2"
+		}
 	},
 	"dependencies": {
 		"nativescript-theme-core": "~1.0.4",
 		"tns-core-modules": "~4.1.0"
+	},
+	"devDependencies": {
+		"babel-traverse": "6.26.0",
+		"babel-types": "6.26.0",
+		"babylon": "6.18.0",
+		"lazy": "1.0.11"
 	}
 }
