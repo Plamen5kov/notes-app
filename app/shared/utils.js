@@ -21,9 +21,13 @@ class Loader {
 
 class FeedbackHelper {
     static feedbackSuccess(message) {
-        feedback.success({
+        var FeedbackPlugin = require("nativescript-feedback");
+        var feedback = new FeedbackPlugin.Feedback();
+        feedback.show({
+            title: "Success",
             message: message || "Success"
         });
+        console.log(feedback);
     }
 
     static feedbackError(message) {
@@ -37,5 +41,5 @@ feedback = new Feedback();
 
 exports.loaderShow = Loader.loaderShow;
 exports.loaderHide = Loader.loaderHide;
-exports.feedbackSuccess = FeedbackHelper.feedbackSuccess;
-exports.feedbackError = FeedbackHelper.feedbackError;
+exports.showSuccess = FeedbackHelper.feedbackSuccess;
+exports.showError = FeedbackHelper.feedbackError;

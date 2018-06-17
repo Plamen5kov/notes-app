@@ -2,7 +2,12 @@ const { LoginViewModel } = require("~/login/login-view-model");
 let fbApi = require("./facebook/fb-login-api");
 var frameModule = require("tns-core-modules/ui/frame");
 var CONSTANTS = require("~/shared/constants.json");
-const { loaderShow, loaderHide } = require("~/shared/utils");
+const {
+  loaderShow,
+  loaderHide,
+  showSuccess,
+  showError
+} = require("~/shared/utils");
 
 function _navigate(path) {
   let topmost = frameModule.topmost();
@@ -39,6 +44,8 @@ function signUp() {
   fbApi.login().then(function(data) {
     _navigate("home/home-page");
     loaderHide();
+
+    showSuccess("Successfully logged in!");
   });
 }
 
