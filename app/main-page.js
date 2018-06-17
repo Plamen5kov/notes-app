@@ -60,6 +60,10 @@ function onAdd(args) {
   Frame.topmost().navigate(navigationContext);
 }
 
+function onFbLogIn(args) {
+  Frame.topmost().navigate("fb-login-page");
+}
+exports.onFbLogIn = onFbLogIn;
 exports.onAdd = onAdd;
 exports.onItemTap = onItemTap;
 exports.onNavigatingTo = onNavigatingTo;

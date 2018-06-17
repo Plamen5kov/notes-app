@@ -6,6 +6,12 @@ purpose of the file is to pass control to the app’s first module.
 
 require("./bundle-config");
 var application = require("application");
+var facebookLib = require("nativescript-facebook");
+
+application.on(application.launchEvent, function(args) {
+  debugger;
+  facebookLib.init("640091469697516");
+});
 
 application.run({ moduleName: "app-root" });
 
