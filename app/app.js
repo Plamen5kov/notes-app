@@ -9,7 +9,6 @@ var application = require("application");
 var facebookLib = require("nativescript-facebook");
 
 application.on(application.launchEvent, function(args) {
-  debugger;
   facebookLib.init("640091469697516");
 });
 

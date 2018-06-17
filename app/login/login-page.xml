@@ -12,7 +12,7 @@
 			<Button text="Log In" tap="signIn" class="btn btn-primary btn-login" />
 			<Button text="Sign Up" tap="signUp" class="btn btn-primary btn-sign-up" />
 			<GridLayout rows="*" columns="*, *" class="btn-row-social">
-				<Image src="https://scontent.fsof2-1.fna.fbcdn.net/v/t39.2365-6/17639236_1785253958471956_282550797298827264_n.png?_nc_cat=0&oh=f25ef350129d60efef163a5b78fca5ce&oe=5B9EDAEA" tap="fbSignIn" row="0" col="0" class="btn" />
+				<Image src="~/images/fb-login-logo.png" tap="fbSignIn" row="0" col="0" class="btn" />
 				<Button text="G" tap="" row="0" col="1" class="btn" />
 			</GridLayout>
 		</FlexboxLayout>

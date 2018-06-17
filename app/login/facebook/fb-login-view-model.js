@@ -120,8 +120,19 @@ function getUserInfo() {
   });
 }
 
+function logout() {
+  facebookLib.logout((err, data) => {
+    if (err) {
+      alert("Error during logout: " + err.message);
+    } else {
+      appSettings.clear();
+    }
+  });
+}
+
 exports.getLoginViewModel = getLoginViewModel;
 exports.login = login;
+exports.logout = logout;
 
 // put in action bar later
 
