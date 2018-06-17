@@ -8,7 +8,8 @@
             "platform": "android",
             "appRoot": "${workspaceRoot}",
             "sourceMaps": true,
-            "watch": true
+            "watch": true,
+            "stopOnEntry": true
         },
         {
             "name": "Attach on Android",
