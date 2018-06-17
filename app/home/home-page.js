@@ -13,12 +13,12 @@ function onItemTap(args) {}
 
 function onAdd(args) {}
 
-function onAvatarTap(args) {
+function onLogout(args) {
   fbLoginModel.logout().then(function(data) {
     frameModule.topmost().navigate({ moduleName: "login/login-page" });
   });
 }
 
-exports.onAvatarTap = onAvatarTap;
+exports.onLogout = onLogout;
 exports.onAdd = onAdd;
 exports.onNavigatingTo = onNavigatingTo;

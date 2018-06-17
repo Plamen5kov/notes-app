@@ -61,15 +61,6 @@ function getUserInfo() {
             userInfo.userName = res.name;
             userInfo.userId = res.id;
 
-            // Get logged in user's avatar
-            // ref: https://github.com/NativeScript/NativeScript/issues/2176
-            console.log(
-              CONSTANTS.FACEBOOK_GRAPH_API_URL +
-                "/" +
-                userInfo.userId +
-                "/picture?type=large&redirect=false&access_token=" +
-                fbAccessToken
-            );
             http
               .getJSON(
                 CONSTANTS.FACEBOOK_GRAPH_API_URL +
