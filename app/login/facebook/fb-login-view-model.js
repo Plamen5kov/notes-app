@@ -124,12 +124,6 @@ exports.getLoginViewModel = getLoginViewModel;
 exports.login = login;
 
 // put in action bar later
-// <ActionBar title="My App" icon="" class="action-bar">
-//     <ActionItem tap="onFbLogIn" ios.systemIcon="16" android.systemIcon="ic_subtract" ios.position="right" text="login">
-//         <Image src="{{avatarUrl}}" class="avatar" height="30" padding="4"/>
-//     </ActionItem>
-//     <ActionItem tap="onAdd" ios.systemIcon="16" android.systemIcon="ic_add" ios.position="right" text="+"></ActionItem>
-// </ActionBar>
 
 // put in main page - on navigated to (attach to view model)
 // if (avatarUrl) {
