@@ -1,8 +1,22 @@
-const { topmost } = require("tns-core-modules/ui/frame");
-const { LoginViewModel } = require("./login-view-model");
+const { LoginViewModel } = require("~/login/login-view-model");
+let fbApi = require("./facebook/fb-login-api");
+var frameModule = require("tns-core-modules/ui/frame");
+var CONSTANTS = require("~/shared/constants.json");
+
+function _navigate(path) {
+  let topmost = frameModule.topmost();
+  topmost.navigate({
+    moduleName: path,
+    clearHistory: true
+  });
+}
 
 function onNavigatingTo(args) {
   if (args.isBackNavigation) {
+    return;
+  }
+  if (fbApi.userIsSignedIn()) {
+    _navigate("home/home-page");
     return;
   }
 
@@ -15,12 +29,9 @@ function fbSignIn() {
 }
 
 function signUp() {
-  require("./facebook/fb-login-view-model").login();
-  //   topmost().navigate({
-  //     moduleName: "login/facebook/fb-login-page",
-  //     animated: true,
-  //     transition: { name: "curl" }
-  //   });
+  fbApi.login().then(function(data) {
+    _navigate("home/home-page");
+  });
 }
 
 exports.onNavigatingTo = onNavigatingTo;

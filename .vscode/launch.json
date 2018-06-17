@@ -7,9 +7,7 @@
             "request": "launch",
             "platform": "android",
             "appRoot": "${workspaceRoot}",
-            "sourceMaps": true,
-            "watch": true,
-            "stopOnEntry": true
+            "watch": true
         },
         {
             "name": "Attach on Android",
