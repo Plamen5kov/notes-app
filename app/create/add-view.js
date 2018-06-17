@@ -6,7 +6,7 @@ function onNavBtnTap(args) {
 function saveNote(args) {
   var tvContent = args.object.parent.getViewById("tv_content");
   Frame.topmost().navigate({
-    moduleName: "main-page"
+    moduleName: "home/home-page"
   });
 }
 

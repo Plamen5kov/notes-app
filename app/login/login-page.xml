@@ -1,0 +1,21 @@
+<Page navigatingTo="onNavigatingTo" class="page" xmlns="http://www.nativescript.org/tns.xsd" xmlns:Gradient="nativescript-gradient"
+	android:actionBarHidden="true">
+
+	<ActionBar ios:title=" " backgroundColor="#334c86" flat="true"></ActionBar>
+
+	<Gradient:Gradient direction="to bottom" colors="#334c86, #4d66a2, #334c86" class="form">
+		<FlexboxLayout flexDirection="column">
+			<Label text="The Definitive Notes App" class='login-label' />
+			<Image src="~/images/logo.png" class="logo" />
+			<TextField hint="Email" class="input input-border input-login" backgroundColor="#e7e7e7" />
+			<TextField hint="Password" secure="true" class="input input-border input-login" backgroundColor="#e7e7e7" />
+			<Button text="Log In" tap="signIn" class="btn btn-primary btn-login" />
+			<Button text="Sign Up" tap="signUp" class="btn btn-primary btn-sign-up" />
+			<GridLayout rows="*" columns="*, *" class="btn-row-social">
+				<Button text="F" tap="signIn" row="0" col="0" class="btn" />
+				<Button text="G" tap="" row="0" col="1" class="btn" />
+			</GridLayout>
+		</FlexboxLayout>
+	</Gradient:Gradient>
+
+</Page>
