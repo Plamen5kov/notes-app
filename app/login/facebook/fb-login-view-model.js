@@ -20,7 +20,7 @@ function onLogin(eventData) {
     appSettings.setString("access_token", eventData.loginResponse.token);
     getUserInfo().then(
       function(data) {
-        _navigate("main-page");
+        _navigate("home/home-page");
         console.log("successfully gathered user info");
       },
       function(err) {
@@ -31,12 +31,20 @@ function onLogin(eventData) {
 }
 
 function login() {
-  facebookLib.fbLogin((err, fbData) => {
+  facebookLib.login((err, fbData) => {
     if (err) {
       alert("Error during login: " + err.message);
     } else {
       appSettings.setString("access_token", fbData.token);
-      this._navigate("home-page");
+      getUserInfo().then(
+        function(data) {
+          _navigate("home/home-page");
+          console.log("successfully gathered user info");
+        },
+        function(err) {
+          alert("Error getting user info: " + err);
+        }
+      );
     }
   });
 }
@@ -113,6 +121,7 @@ function getUserInfo() {
 }
 
 exports.getLoginViewModel = getLoginViewModel;
+exports.login = login;
 
 // put in action bar later
 // <ActionBar title="My App" icon="" class="action-bar">

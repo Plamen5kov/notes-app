@@ -1,27 +1,28 @@
-const { topmost } = require('tns-core-modules/ui/frame');
-const { LoginViewModel } = require('./login-view-model');
+const { topmost } = require("tns-core-modules/ui/frame");
+const { LoginViewModel } = require("./login-view-model");
 
 function onNavigatingTo(args) {
-    if (args.isBackNavigation) {
-        return;
-    }
+  if (args.isBackNavigation) {
+    return;
+  }
 
-    const page = args.object;
-    page.bindingContext = new LoginViewModel();
+  const page = args.object;
+  page.bindingContext = new LoginViewModel();
 }
 
-function signIn() {
-    signUp();
+function fbSignIn() {
+  signUp();
 }
 
 function signUp() {
-    topmost().navigate({ 
-        moduleName: 'home/home-page', 
-        animated: true, 
-        transition: { name: 'curl' } 
-    });
+  require("./facebook/fb-login-view-model").login();
+  //   topmost().navigate({
+  //     moduleName: "login/facebook/fb-login-page",
+  //     animated: true,
+  //     transition: { name: "curl" }
+  //   });
 }
 
 exports.onNavigatingTo = onNavigatingTo;
-exports.signIn = signIn;
+exports.fbSignIn = fbSignIn;
 exports.signUp = signUp;
