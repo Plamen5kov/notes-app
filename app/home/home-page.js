@@ -18,7 +18,7 @@ function onLogout(args) {
 }
 
 function onAdd(args) {
-  topmost().navigate({ moduleName: "create/create-view" });
+  frameModule.topmost().navigate({ moduleName: "create/create-view" });
 }
 
 exports.onLogout = onLogout;
