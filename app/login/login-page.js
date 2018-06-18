@@ -1,16 +1,18 @@
 const { LoginViewModel } = require("~/login/login-view-model");
 const { topmost } = require("tns-core-modules/ui/frame");
-let facebookApi = require("./facebook/fb-login-api");
+debugger;
+let facebookApi = require("~/login/facebook/fb-login-api");
 var CONSTANTS = require("~/shared/constants.json");
 var firebaseApi = require("~/login/firebase/firebase-api");
-var utils = require("~/shared/utils");
 
 const {
   loaderShow,
   loaderHide,
   showSuccess,
-  showError
+  showError,
+  userIsSignedIn
 } = require("~/shared/utils");
+
 const firebase = require("nativescript-plugin-firebase");
 
 let firebaseInitialized = false;
@@ -34,7 +36,7 @@ function onNavigatingTo(args) {
     firebaseInitialized = true;
   }
 
-  if (utils.userIsSignedIn()) {
+  if (userIsSignedIn()) {
     _navigate("home/home-page");
     return;
   }
@@ -60,14 +62,9 @@ function signIn() {
 }
 
 function signUp() {
-  console.log(require("~/shared/utils"));
   loaderShow();
-  facebookApi.login().then(function(data) {
-    _navigate("home/home-page");
-    loaderHide();
-
-    showSuccess("Successfully logged in with facebook!");
-  });
+  _navigate("home/home-page");
+  loaderHide();
 }
 
 function googleSignIn() {

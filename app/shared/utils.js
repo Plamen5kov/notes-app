@@ -47,8 +47,6 @@ function userIsSignedIn() {
   return !!appSettings.getString(CONSTANTS.CURRENT_USER_NAME);
 }
 
-function loginType
-
 feedback = new Feedback();
 
 class UserHelper {
@@ -60,7 +58,7 @@ class UserHelper {
 
   static getLoggedUser() {
     return {
-      id: "42"
+      id: appSettings.getString(CONSTANTS.ID)
     };
   }
 }
