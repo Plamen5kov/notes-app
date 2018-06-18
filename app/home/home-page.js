@@ -1,26 +1,38 @@
 const { HomeViewModel } = require("./home-view-model");
-const Page = require("tns-core-modules/ui/page").Page;
-let frameModule = require("tns-core-modules/ui/frame");
+const { topmost } = require("tns-core-modules/ui/frame");
 let fbLoginModel = require("~/login/facebook/fb-login-api");
+
+let vm;
 
 function onNavigatingTo(args) {
   const page = args.object;
 
-  page.bindingContext = new HomeViewModel();
+  vm = new HomeViewModel();
+  page.bindingContext = vm;
 }
 
-function onItemTap(args) {}
-
-function onLogout(args) {
-  fbLoginModel.logout().then(function(data) {
-    frameModule.topmost().navigate({ moduleName: "login/login-page" });
+function onItemTap(args) {
+  topmost().navigate({
+    moduleName: 'details/details-page',
+    context: vm.notes[args.index],
+    animated: true,
+    transition: {
+      name: "curl"
+    }
   });
 }
 
-function onAdd(args) {
-  frameModule.topmost().navigate({ moduleName: "create/create-view" });
+function logout(args) {
+  fbLoginModel.logout().then(function (data) {
+    topmost().navigate({ moduleName: "login/login-page" });
+  });
 }
 
-exports.onLogout = onLogout;
-exports.onAdd = onAdd;
+function add(args) {
+  topmost().navigate({ moduleName: "create/create-page" });
+}
+
+exports.logout = logout;
+exports.add = add;
 exports.onNavigatingTo = onNavigatingTo;
+exports.onItemTap = onItemTap;

@@ -10,16 +10,29 @@ https://docs.nativescript.org/ui/components.
     http://docs.nativescript.org/ui/action-bar
     -->
     <Page.actionBar>
-        <ActionBar title="" icon="" class="action-bar">
+        <ActionBar title="Notes" icon="" class="action-bar">
             <ActionItem ios.position="right" text="{{userName}}"></ActionItem>
             <ActionItem ios.systemIcon="16" android.systemIcon="ic_subtract" ios.position="right" text="login">
                 <Image src="{{avatarUrl}}" class="avatar" height="30" padding="4"/>
             </ActionItem>
-            <ActionItem tap="onAdd" ios.systemIcon="16" android.systemIcon="ic_add" ios.position="right" text="            add note"></ActionItem>
-            <ActionItem tap="onLogout" ios.systemIcon="16" android.systemIcon="ic_add" ios.position="right" text="logout" android.position="popup"></ActionItem>
+            <ActionItem tap="add" ios.systemIcon="16" android.systemIcon="ic_add" ios.position="right" text="            add note"></ActionItem>
+            <ActionItem tap="logout" ios.systemIcon="16" android.systemIcon="ic_add" ios.position="right" text="logout" android.position="popup"></ActionItem>
         </ActionBar>
     </Page.actionBar>
 
-    <StackLayout>
+    <StackLayout style="padding: 5">
+        <Label text="Your stored notes" class="h2 text-center" textWrap="true" />
+        <StackLayout visibility="{{ notes.length ? 'visible' : 'collapsed' }}">
+            <Label class="text-center font-weight-bold" text="There are no notes yet. Create one?" />
+            <Button text="Add note" class="btn" tap="add" />
+        </StackLayout>
+        <ListView items="{{ notes }}" itemTap="onItemTap">
+            <ListView.itemTemplate>
+                <GridLayout class='note-container' rows="*, 4*" columns="*">
+                    <Label class='note-title' text="{{ title }}" textWrap="true" />
+                    <Label textWrap="true" row="1" text="{{ shortContent }}" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
     </StackLayout>
 </Page>

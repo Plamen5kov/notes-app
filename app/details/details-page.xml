@@ -10,11 +10,10 @@ https://docs.nativescript.org/ui/components.
     http://docs.nativescript.org/ui/action-bar
     -->
     <Page.actionBar>
-        <ActionBar title="My App" icon="" class="action-bar">
-            <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"/>
+        <ActionBar title="Details" icon="" class="action-bar">
+            <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="goBack"/>
         </ActionBar>
         
     </Page.actionBar>
 
-    <Label id="details_info" />
 </Page>

@@ -19,3 +19,11 @@ components that have the btn class name.
 .btn {
     font-size: 18;
 }
+
+.note-container {
+    padding: 5;
+}
+
+.note-container .note-title {
+    font-size: 18;
+}

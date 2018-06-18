@@ -30,10 +30,7 @@ class FirebaseHelper {
                 // note that the query returns 1 match at a time
                 // in the order specified in the query
                 if (!result.error) {
-                    console.log("Event type: " + result.type);
-                    console.log("Key: " + result.key);
-                    console.log("Value: " + JSON.stringify(result.value));
-                    resolve(result);
+                    resolve(result.value);
                 } else {
                     console.log(result);
                     reject(result.error);
