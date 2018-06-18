@@ -11,18 +11,18 @@ https://docs.nativescript.org/ui/components.
     -->
     <Page.actionBar>
         <ActionBar title="My App" icon="" class="action-bar">
-            <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="discard"/>       
+            <NavigationButton tap="goBack" text="Go Back" android.systemIcon="ic_menu_back" tap="discard"/>
         </ActionBar>
 
     </Page.actionBar>
-    <GridLayout rows="8*, 2*" columns="*">
+    <GridLayout rows="7*, 3*" columns="*">
         <StackLayout row="0">
             <TextField hint="Title" text="{{ title }}" maxLength="25" />
             <TextView hint="Note content" text="{{ content }}" />
         </StackLayout>
         <StackLayout row="1">
             <Button text="Save" class="btn btn-primary" tap="save" />
-            <Button text="Discard" class="btn btn-error" tap="discard" />
+            <Button text="Discard" class="btn btn-primary btn-purple" tap="discard" />
         </StackLayout>
     </GridLayout>
 </Page>
