@@ -11,12 +11,14 @@ function onNavigatingTo(args) {
 
 function onItemTap(args) {}
 
-function onAdd(args) {}
-
 function onLogout(args) {
   fbLoginModel.logout().then(function(data) {
     frameModule.topmost().navigate({ moduleName: "login/login-page" });
   });
+}
+
+function onAdd(args) {
+  frameModule.topmost().navigate({ moduleName: "create/create-view" });
 }
 
 exports.onLogout = onLogout;
