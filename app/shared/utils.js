@@ -48,7 +48,7 @@ class UserHelper {
 
     static getLoggedUser() {
         return {
-            id: ''
+            id: '42'
         }
     }
 }
