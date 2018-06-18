@@ -10,7 +10,7 @@ function login() {
       if (err) {
         alert("Error during login: " + err.message);
       } else {
-        appSettings.setString(CONSTANTS.ACCESS_TOKEN, fbData.token);
+        appSettings.setString(CONSTANTS.FACEBOOK_ACCESS_TOKEN, fbData.token);
         getUserInfo().then(
           function(data) {
             console.log("successfully gathered user info");
@@ -32,19 +32,11 @@ function getCurrentAccessToken() {
   alert("Current access token: " + JSON.stringify(accessToken, null, "\t"));
 }
 
-function getLoginViewModel() {
-  let loginViewModel = new Observable();
-
-  loginViewModel.onLogin = onLogin;
-  loginViewModel.login = login;
-  loginViewModel.getCurrentAccessToken = getCurrentAccessToken;
-
-  return loginViewModel;
-}
-
 function getUserInfo() {
   return new Promise(function(resolve, reject) {
-    const fbAccessToken = appSettings.getString(CONSTANTS.ACCESS_TOKEN);
+    const fbAccessToken = appSettings.getString(
+      CONSTANTS.FACEBOOK_ACCESS_TOKEN
+    );
     let userInfo = {
       userName: "",
       userId: "",
@@ -59,9 +51,13 @@ function getUserInfo() {
         .then(
           res => {
             userInfo.userName = res.name;
-            appSettings.setString(CONSTANTS.USER_NAME, userInfo.userName);
+            appSettings.setString(
+              CONSTANTS.CURRENT_USER_NAME,
+              userInfo.userName
+            );
 
             userInfo.userId = res.id;
+            appSettings.setString(CONSTANTS.ID, userInfo.userId);
 
             http
               .getJSON(
@@ -75,7 +71,7 @@ function getUserInfo() {
                 res => {
                   userInfo.avatarUrl = res.data.url;
                   appSettings.setString(
-                    CONSTANTS.AVATAR_URL,
+                    CONSTANTS.CURRENT_AVATAR_URL,
                     userInfo.avatarUrl
                   );
                   resolve(userInfo);
@@ -95,10 +91,6 @@ function getUserInfo() {
   });
 }
 
-function userIsSignedIn() {
-  return !!appSettings.getString(CONSTANTS.ACCESS_TOKEN);
-}
-
 function logout() {
   return new Promise(function(resolve, reject) {
     facebookLib.logout((err, data) => {
@@ -113,7 +105,5 @@ function logout() {
   });
 }
 
-exports.getLoginViewModel = getLoginViewModel;
 exports.login = login;
 exports.logout = logout;
-exports.userIsSignedIn = userIsSignedIn;
