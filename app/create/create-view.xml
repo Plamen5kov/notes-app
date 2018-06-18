@@ -11,7 +11,7 @@ https://docs.nativescript.org/ui/components.
     -->
     <Page.actionBar>
         <ActionBar title="My App" icon="" class="action-bar">
-            <NavigationButton tap="goBack" text="Go Back" android.systemIcon="ic_menu_back" tap="discard"/>
+            <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="discard"/>
         </ActionBar>
 
     </Page.actionBar>

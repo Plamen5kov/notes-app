@@ -48,7 +48,7 @@ function goBack() {
     moduleName: "home/home-page"
   });
 }
-exports.goBack = goBack;
+
 exports.onNavigatingTo = onNavigatingTo;
 exports.discard = discard;
 exports.save = save;
