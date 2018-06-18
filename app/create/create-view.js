@@ -35,12 +35,14 @@ function save() {
 
 function discard() {
   // show dialog to confirm
-  dialogs.confirm("Your message").then(function(discard) {
-    if (discard) {
-      // navigate to home/home-page
-      goBack();
-    }
-  });
+  dialogs
+    .confirm("Note will be discarded! Are you sure?")
+    .then(function(discard) {
+      if (discard) {
+        // navigate to home/home-page
+        goBack();
+      }
+    });
 }
 
 function goBack() {
