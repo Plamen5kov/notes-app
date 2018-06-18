@@ -6,6 +6,7 @@ class HomeViewModel extends Observable {
   constructor() {
     super();
     this.avatarUrl = appSettings.getString(CONSTANTS.AVATAR_URL);
+    this.userName = appSettings.getString(CONSTANTS.USER_NAME);
     // get user token to authenticate against firebase db
     // fetch all entries from firebase db for that user
   }

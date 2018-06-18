@@ -59,6 +59,8 @@ function getUserInfo() {
         .then(
           res => {
             userInfo.userName = res.name;
+            appSettings.setString(CONSTANTS.USER_NAME, userInfo.userName);
+
             userInfo.userId = res.id;
 
             http
