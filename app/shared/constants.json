@@ -2,5 +2,11 @@
   "FACEBOOK_GRAPH_API_URL": "https://graph.facebook.com/v2.9",
   "FACEBOOK_ACCESS_TOKEN": "facebook_access_token",
   "CURRENT_AVATAR_URL": "current_avatar_url",
-  "CURRENT_USER_NAME": "current_user_name"
+  "CURRENT_USER_NAME": "current_user_name",
+  "LOGIN_TYPE": {
+    "GOOGLE": "google",
+    "FACEBOOK": "facebook",
+    "EMAILPASS": "emailpass"
+  },
+  "ID": "current_user_id"
 }

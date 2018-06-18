@@ -57,6 +57,7 @@ function getUserInfo() {
             );
 
             userInfo.userId = res.id;
+            appSettings.setString(CONSTANTS.ID, userInfo.userId);
 
             http
               .getJSON(

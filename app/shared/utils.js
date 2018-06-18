@@ -47,6 +47,8 @@ function userIsSignedIn() {
   return !!appSettings.getString(CONSTANTS.CURRENT_USER_NAME);
 }
 
+function loginType
+
 feedback = new Feedback();
 
 class UserHelper {
@@ -63,6 +65,11 @@ class UserHelper {
   }
 }
 
+function logout() {
+  
+}
+
+exports.logout = logout;
 exports.userIsSignedIn = userIsSignedIn;
 exports.loaderShow = Loader.loaderShow;
 exports.loaderHide = Loader.loaderHide;

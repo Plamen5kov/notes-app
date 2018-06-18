@@ -15,6 +15,7 @@ function login() {
             CONSTANTS.CURRENT_AVATAR_URL,
             result.profileImageURL
           );
+          appSettings.setString(CONSTANTS.ID, result.uid);
           // JSON.stringify(result);
           resolve(true);
         },
@@ -26,4 +27,19 @@ function login() {
   });
 }
 
+function logout() {
+  return new Promise(function(resolve, reject) {
+    firebase.logout().then(
+      () => {
+        resolve(true);
+        appSettings.clear();
+      },
+      error => {
+        reject(error);
+      }
+    );
+  });
+}
+
 exports.login = login;
+exports.logout = logout;
