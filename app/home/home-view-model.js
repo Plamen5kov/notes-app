@@ -1,6 +1,7 @@
-var Observable = require("data/observable").Observable;
+const { Observable } = require("data/observable");
 let appSettings = require("tns-core-modules/application-settings");
-var CONSTANTS = require("~/shared/constants.json");
+const CONSTANTS = require("~/shared/constants.json");
+const { getNotes } = require('~/shared/firebase-helper');
 
 class HomeViewModel extends Observable {
   constructor() {
@@ -9,6 +10,7 @@ class HomeViewModel extends Observable {
     this.userName = appSettings.getString(CONSTANTS.USER_NAME);
     // get user token to authenticate against firebase db
     // fetch all entries from firebase db for that user
+    getNotes();
   }
 }
 

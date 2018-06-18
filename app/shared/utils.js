@@ -39,7 +39,24 @@ class FeedbackHelper {
 
 feedback = new Feedback();
 
+class UserHelper {
+    static getUserData() {
+        return {
+            id: ''
+        };
+    }
+
+    static getLoggedUser() {
+        return {
+            id: ''
+        }
+    }
+}
+
 exports.loaderShow = Loader.loaderShow;
 exports.loaderHide = Loader.loaderHide;
 exports.showSuccess = FeedbackHelper.feedbackSuccess;
 exports.showError = FeedbackHelper.feedbackError;
+
+exports.getUserData = UserHelper.getUserData;
+exports.getLoggedUser = UserHelper.getLoggedUser;

@@ -4,9 +4,10 @@ const {
   loaderShow,
   loaderHide,
   showSuccess,
-  showError
+  showError,
 } = require("~/shared/utils");
-var dialogs = require("ui/dialogs");
+const dialogs = require("ui/dialogs");
+const { addNote } = require("~/shared/firebase-helper");
 
 let vm;
 
@@ -18,19 +19,18 @@ function onNavigatingTo(args) {
 }
 
 function save() {
-  if (vm.title || vm.content) {
+  if (vm.title && vm.content) {
     // save to database
+    addNote({ title: vm.title, content: vm.content });
 
     // show success toast
-    showSuccess("successfully saved note!");
+    showSuccess("Successfully saved note!");
 
     // navigate to home/home-page
     goBack();
   } else {
-    showError("you need to have title or content!");
+    showError("You need to fill out both the title and content!");
   }
-
-  console.log(vm.title, vm.content);
 }
 
 function discard() {
