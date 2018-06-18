@@ -1,7 +1,10 @@
 const { LoginViewModel } = require("~/login/login-view-model");
-let fbApi = require("./facebook/fb-login-api");
 const { topmost } = require("tns-core-modules/ui/frame");
-const CONSTANTS = require("~/shared/constants.json");
+let facebookApi = require("./facebook/fb-login-api");
+var CONSTANTS = require("~/shared/constants.json");
+var firebaseApi = require("~/login/firebase/firebase-api");
+var utils = require("~/shared/utils");
+
 const {
   loaderShow,
   loaderHide,
@@ -31,7 +34,7 @@ function onNavigatingTo(args) {
     firebaseInitialized = true;
   }
 
-  if (fbApi.userIsSignedIn()) {
+  if (utils.userIsSignedIn()) {
     _navigate("home/home-page");
     return;
   }
@@ -46,9 +49,9 @@ function fbSignIn() {
     loaderHide();
 
     showSuccess("Successfully logged in!");
-  }, (err) => {
+  }, err => {
     loaderHide();
-    showError('Failed to login with facebook. Err: ' + err);
+    showError("Failed to login with facebook. Err: " + err);
   });
 }
 
@@ -57,9 +60,26 @@ function signIn() {
 }
 
 function signUp() {
-  _navigate('home/home-page');
+  console.log(require("~/shared/utils"));
+  loaderShow();
+  facebookApi.login().then(function(data) {
+    _navigate("home/home-page");
+    loaderHide();
+
+    showSuccess("Successfully logged in with facebook!");
+  });
 }
 
+function googleSignIn() {
+  loaderShow();
+  firebaseApi.login().then(function(data) {
+    _navigate("home/home-page");
+    loaderHide();
+    showSuccess("Successfully logged in with google!");
+  });
+}
+
+exports.googleSignIn = googleSignIn;
 exports.onNavigatingTo = onNavigatingTo;
 exports.fbSignIn = fbSignIn;
 exports.signIn = signIn;

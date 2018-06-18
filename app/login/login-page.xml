@@ -13,7 +13,7 @@
 			<Button text="Sign Up" tap="signUp" class="btn btn-primary btn-sign-up" />
 			<GridLayout rows="*" columns="*, *" class="btn-row-social">
 				<Image src="~/images/fb-login-logo.png" tap="fbSignIn" row="0" col="0" class="btn" />
-				<Button text="G" tap="" row="0" col="1" class="btn" />
+				<Image src="~/images/google-login-logo.png" tap="googleSignIn" row="0" col="1" class="btn" />
 			</GridLayout>
 		</FlexboxLayout>
 	</Gradient:Gradient>

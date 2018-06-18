@@ -6,8 +6,8 @@ const { getNotes } = require('~/shared/firebase-helper');
 class HomeViewModel extends Observable {
   constructor() {
     super();
-    this.avatarUrl = appSettings.getString(CONSTANTS.AVATAR_URL);
-    this.userName = appSettings.getString(CONSTANTS.USER_NAME);
+    this.avatarUrl = appSettings.getString(CONSTANTS.CURRENT_AVATAR_URL);
+    this.userName = appSettings.getString(CONSTANTS.CURRENT_USER_NAME);
     // get user token to authenticate against firebase db
     // fetch all entries from firebase db for that user
     getNotes();
