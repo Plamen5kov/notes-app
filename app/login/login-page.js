@@ -1,7 +1,6 @@
 const { LoginViewModel } = require("~/login/login-view-model");
 const { topmost } = require("tns-core-modules/ui/frame");
-debugger;
-let facebookApi = require("~/login/facebook/fb-login-api");
+let fbApi = require("~/login/facebook/fb-login-api");
 var CONSTANTS = require("~/shared/constants.json");
 var firebaseApi = require("~/login/firebase/firebase-api");
 
