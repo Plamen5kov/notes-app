@@ -15,5 +15,14 @@ https://docs.nativescript.org/ui/components.
         </ActionBar>
         
     </Page.actionBar>
-
+    <GridLayout rows="7*, 3*" columns="*">
+        <StackLayout row="0">
+            <TextField hint="Title" text="{{ title }}" maxLength="25" />
+            <TextView hint="Note content" text="{{ content }}" />
+        </StackLayout>
+        <StackLayout row="1">
+            <Button text="Save" class="btn btn-primary" tap="saveNote" />
+            <Button text="Delete" class="btn btn-primary btn-ruby" tap="deleteNote" />
+        </StackLayout>
+    </GridLayout>
 </Page>

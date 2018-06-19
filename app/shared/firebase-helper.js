@@ -27,6 +27,43 @@ class FirebaseHelper {
     });
   }
 
+  static deleteNote(key) {
+    return new Promise(function(resolve, reject) {
+      const userId = getLoggedUser().id;
+      firebase
+        .remove(FirebaseHelper.notesRoute + "/" + userId + "/" + key)
+        .then(
+          res => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+  }
+
+  static updateNote({ key, title, content }) {
+    return new Promise(function(resolve, reject) {
+      const userId = getLoggedUser().id;
+      firebase
+        .update(FirebaseHelper.notesRoute + "/" + userId + "/" + key, {
+          title,
+          content,
+          createdAt: firebase.ServerValue.TIMESTAMP,
+          author: getLoggedUser().id
+        })
+        .then(
+          res => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+  }
+
   static getNotes() {
     return new Promise(function(resolve, reject) {
       const userId = getLoggedUser().id;
@@ -54,3 +91,5 @@ class FirebaseHelper {
 
 exports.addNote = FirebaseHelper.addNote;
 exports.getNotes = FirebaseHelper.getNotes;
+exports.delNote = FirebaseHelper.deleteNote;
+exports.updateNote = FirebaseHelper.updateNote;
