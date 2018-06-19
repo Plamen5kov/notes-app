@@ -4,8 +4,9 @@ const {
   FeedbackType,
   FeedbackPosition
 } = require("nativescript-feedback");
-let appSettings = require("tns-core-modules/application-settings");
-var CONSTANTS = require("~/shared/constants.json");
+const { clear, getString } = require("tns-core-modules/application-settings");
+const CONSTANTS = require("~/shared/constants.json");
+const { topmost } = require("tns-core-modules/ui/frame");
 
 let loader, feedback;
 
@@ -27,8 +28,8 @@ class Loader {
 
 class FeedbackHelper {
   static feedbackSuccess(message) {
-    var FeedbackPlugin = require("nativescript-feedback");
-    var feedback = new FeedbackPlugin.Feedback();
+    let FeedbackPlugin = require("nativescript-feedback");
+    let feedback = new FeedbackPlugin.Feedback();
     feedback.show({
       title: "Success",
       message: message || "Success"
@@ -44,7 +45,7 @@ class FeedbackHelper {
 }
 
 function userIsSignedIn() {
-  return !!appSettings.getString(CONSTANTS.CURRENT_USER_NAME);
+  return !!getString(CONSTANTS.CURRENT_USER_NAME);
 }
 
 feedback = new Feedback();
@@ -58,16 +59,24 @@ class UserHelper {
 
   static getLoggedUser() {
     return {
-      id: appSettings.getString(CONSTANTS.ID)
+      id: getString(CONSTANTS.ID)
     };
   }
 }
 
-function logout() {
-  
+function _navigate(path) {
+  topmost().navigate({
+    moduleName: path,
+    clearHistory: true
+  });
 }
 
-exports.logout = logout;
+function logoutUser() {
+  clear();
+}
+
+exports.navigateToPath = _navigate;
+exports.logoutUser = logoutUser;
 exports.userIsSignedIn = userIsSignedIn;
 exports.loaderShow = Loader.loaderShow;
 exports.loaderHide = Loader.loaderHide;

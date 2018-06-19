@@ -1,4 +1,4 @@
-var Observable = require("data/observable").Observable;
+const { Observable } = require("data/observable");
 
 class CreateViewModel extends Observable {
   constructor() {

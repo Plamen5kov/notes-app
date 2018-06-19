@@ -1,38 +1,47 @@
-let appSettings = require("tns-core-modules/application-settings");
-var CONSTANTS = require("~/shared/constants.json");
-var firebase = require("nativescript-plugin-firebase");
+const { setString, clear } = require("tns-core-modules/application-settings");
+const CONSTANTS = require("~/shared/constants.json");
+const {
+  login,
+  logout,
+  init,
+  LoginType
+} = require("nativescript-plugin-firebase");
 
-function login() {
+let firebaseInitialized = false;
+
+function firebaseInit() {
+  if (!firebaseInitialized) {
+    init({
+      persist: true
+    });
+    firebaseInitialized = true;
+  }
+}
+
+function firebaseLogin() {
   return new Promise(function(resolve, reject) {
-    firebase
-      .login({
-        type: firebase.LoginType.GOOGLE
-      })
-      .then(
-        function(result) {
-          appSettings.setString(CONSTANTS.CURRENT_USER_NAME, result.name);
-          appSettings.setString(
-            CONSTANTS.CURRENT_AVATAR_URL,
-            result.profileImageURL
-          );
-          appSettings.setString(CONSTANTS.ID, result.uid);
-          // JSON.stringify(result);
-          resolve(true);
-        },
-        function(errorMessage) {
-          console.log(errorMessage);
-          reject(errorMessage);
-        }
-      );
+    login({
+      type: LoginType.GOOGLE
+    }).then(
+      function(result) {
+        setString(CONSTANTS.CURRENT_USER_NAME, result.name);
+        setString(CONSTANTS.CURRENT_AVATAR_URL, result.profileImageURL);
+        setString(CONSTANTS.ID, result.uid);
+        resolve(true);
+      },
+      function(errorMessage) {
+        reject(errorMessage);
+      }
+    );
   });
 }
 
-function logout() {
+function firebaseLogout() {
   return new Promise(function(resolve, reject) {
-    firebase.logout().then(
+    logout().then(
       () => {
         resolve(true);
-        appSettings.clear();
+        clear();
       },
       error => {
         reject(error);
@@ -41,5 +50,6 @@ function logout() {
   });
 }
 
-exports.login = login;
-exports.logout = logout;
+exports.firebaseInit = firebaseInit;
+exports.firebaseLogin = firebaseLogin;
+exports.firebaseLogout = firebaseLogout;

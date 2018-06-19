@@ -1,59 +1,32 @@
 const { LoginViewModel } = require("~/login/login-view-model");
-const { topmost } = require("tns-core-modules/ui/frame");
-let fbApi = require("~/login/facebook/fb-login-api");
-var CONSTANTS = require("~/shared/constants.json");
-var firebaseApi = require("~/login/firebase/firebase-api");
-
+const { facebookLogin } = require("~/login/facebook/fb-login-api");
+const {
+  firebaseInit,
+  firebaseLogin
+} = require("~/login/firebase/firebase-api");
 const {
   loaderShow,
   loaderHide,
   showSuccess,
   showError,
-  userIsSignedIn
+  userIsSignedIn,
+  navigateToPath
 } = require("~/shared/utils");
-
-const firebase = require("nativescript-plugin-firebase");
-
-let firebaseInitialized = false;
-
-function _navigate(path) {
-  topmost().navigate({
-    moduleName: path,
-    clearHistory: true
-  });
-}
 
 function onNavigatingTo(args) {
   if (args.isBackNavigation) {
     return;
   }
 
-  if (!firebaseInitialized) {
-    firebase.init({
-      persist: true
-    });
-    firebaseInitialized = true;
-  }
+  firebaseInit();
 
   if (userIsSignedIn()) {
-    _navigate("home/home-page");
+    navigateToPath("home/home-page");
     return;
   }
 
   const page = args.object;
   page.bindingContext = new LoginViewModel();
-}
-
-function fbSignIn() {
-  fbApi.login().then(function(data) {
-    _navigate("home/home-page");
-    loaderHide();
-
-    showSuccess("Successfully logged in!");
-  }, err => {
-    loaderHide();
-    showError("Failed to login with facebook. Err: " + err);
-  });
 }
 
 function signIn() {
@@ -62,14 +35,29 @@ function signIn() {
 
 function signUp() {
   loaderShow();
-  _navigate("home/home-page");
+  navigateToPath("home/home-page");
   loaderHide();
+}
+
+function fbSignIn() {
+  facebookLogin().then(
+    function(data) {
+      navigateToPath("home/home-page");
+      loaderHide();
+
+      showSuccess("Successfully logged in!");
+    },
+    err => {
+      loaderHide();
+      showError("Failed to login with facebook. Err: " + err);
+    }
+  );
 }
 
 function googleSignIn() {
   loaderShow();
-  firebaseApi.login().then(function(data) {
-    _navigate("home/home-page");
+  firebaseLogin().then(function(data) {
+    navigateToPath("home/home-page");
     loaderHide();
     showSuccess("Successfully logged in with google!");
   });

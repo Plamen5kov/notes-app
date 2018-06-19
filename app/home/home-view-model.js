@@ -1,35 +1,38 @@
 const { Observable } = require("data/observable");
-let appSettings = require("tns-core-modules/application-settings");
+const { getString } = require("tns-core-modules/application-settings");
 const CONSTANTS = require("~/shared/constants.json");
-const { getNotes } = require('~/shared/firebase-helper');
+const { getNotes } = require("~/shared/firebase-helper");
 
 function truncateContent(content) {
-  return (content.substring(0, Math.min(150, content.length)) + (content.length > 150 ? '...' : ''));
+  return (
+    content.substring(0, Math.min(150, content.length)) +
+    (content.length > 150 ? "..." : "")
+  );
 }
 
 class HomeViewModel extends Observable {
   constructor() {
     super();
-    this.avatarUrl = appSettings.getString(CONSTANTS.CURRENT_AVATAR_URL);
-    this.userName = appSettings.getString(CONSTANTS.CURRENT_USER_NAME);
-    // get user token to authenticate against firebase db
-    // fetch all entries from firebase db for that user
+    this.avatarUrl = getString(CONSTANTS.CURRENT_AVATAR_URL);
+    this.userName = getString(CONSTANTS.CURRENT_USER_NAME);
     this.notes = [];
 
-    getNotes().then((res) => {
-      for (var prop in res) {
-        this.notes.push({
-          key: prop,
-          title: res[prop].title,
-          shortContent: truncateContent(res[prop].content),
-          content: res[prop].content
-        });
+    getNotes().then(
+      res => {
+        for (let prop in res) {
+          this.notes.push({
+            key: prop,
+            title: res[prop].title,
+            shortContent: truncateContent(res[prop].content),
+            content: res[prop].content
+          });
+        }
+        console.log(this.notes);
+      },
+      err => {
+        console.log(err);
       }
-      console.log(this.notes);
-    }, (err) => {
-      console.log(err);
-    });
-
+    );
   }
 }
 

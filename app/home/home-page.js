@@ -1,20 +1,19 @@
 const { HomeViewModel } = require("./home-view-model");
 const { topmost } = require("tns-core-modules/ui/frame");
-let fbLoginModel = require("~/login/facebook/fb-login-api");
-
-let vm;
+const { logoutUser } = require("~/shared/utils");
+const { facebookLogout } = require("~/login/facebook/fb-login-api");
+let homeViewModel;
 
 function onNavigatingTo(args) {
   const page = args.object;
-
-  vm = new HomeViewModel();
-  page.bindingContext = vm;
+  homeViewModel = new HomeViewModel();
+  page.bindingContext = homeViewModel;
 }
 
 function onItemTap(args) {
   topmost().navigate({
-    moduleName: 'details/details-page',
-    context: vm.notes[args.index],
+    moduleName: "details/details-page",
+    context: homeViewModel.notes[args.index],
     animated: true,
     transition: {
       name: "curl"
@@ -23,9 +22,8 @@ function onItemTap(args) {
 }
 
 function logout(args) {
-  fbLoginModel.logout().then(function (data) {
-    topmost().navigate({ moduleName: "login/login-page" });
-  });
+  logoutUser();
+  topmost().navigate({ moduleName: "login/login-page" });
 }
 
 function add(args) {

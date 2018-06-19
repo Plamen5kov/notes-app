@@ -1,9 +1,9 @@
-var Observable = require("data/observable").Observable;
+const { Observable } = require("data/observable");
 
 class LoginViewModel extends Observable {
-    constructor() {
-        super();      
-    }
+  constructor() {
+    super();
+  }
 }
 
 exports.LoginViewModel = LoginViewModel;
