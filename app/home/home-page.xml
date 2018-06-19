@@ -22,16 +22,21 @@ https://docs.nativescript.org/ui/components.
 
     <StackLayout style="padding: 5">
         <Label text="Your stored notes" class="h2 text-center" textWrap="true" />
-        <StackLayout visibility="{{ notes.length ? 'visible' : 'collapsed' }}">
+        <StackLayout class="hr-light m-10">
+            
+        </StackLayout>
+        <StackLayout visibility="{{ isEmpty ? 'visible' : 'collapsed' }}">
             <Label class="text-center font-weight-bold" text="There are no notes yet. Create one?" />
             <Button text="Add note" class="btn" tap="add" />
         </StackLayout>
-        <ListView items="{{ notes }}" itemTap="onItemTap" id="lv_notes">
+        <ListView class='notes-list' items="{{ notes }}" itemTap="onItemTap" id="lv_notes">
             <ListView.itemTemplate>
+            <StackLayout>
                 <GridLayout class='note-container' rows="*, 4*" columns="*">
                     <Label class='note-title' text="{{ title }}" textWrap="true" />
-                    <Label textWrap="true" row="1" text="{{ shortContent }}" />
+                    <Label class='note-content body' textWrap="true" row="1" text="{{ shortContent }}" />
                 </GridLayout>
+            </StackLayout>
             </ListView.itemTemplate>
         </ListView>
     </StackLayout>

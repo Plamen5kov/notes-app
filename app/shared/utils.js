@@ -53,13 +53,13 @@ feedback = new Feedback();
 class UserHelper {
   static getUserData() {
     return {
-      id: ""
+      id: "public"
     };
   }
 
   static getLoggedUser() {
     return {
-      id: getString(CONSTANTS.ID)
+      id: getString(CONSTANTS.ID) || "public"
     };
   }
 }

@@ -14,12 +14,14 @@ class HomeViewModel extends Observable {
   constructor(page) {
     super();
     this.avatarUrl = getString(CONSTANTS.CURRENT_AVATAR_URL);
-    this.userName = getString(CONSTANTS.CURRENT_USER_NAME);
+    this.userName = getString(CONSTANTS.CURRENT_USER_NAME) || "public user";
     this.notes = [];
+    this.isEmpty = true;
 
     getNotes().then(
       res => {
         for (let prop in res) {
+          this.set('isEmpty',false);
           this.notes.push({
             key: prop,
             title: res[prop].title,
@@ -27,6 +29,7 @@ class HomeViewModel extends Observable {
             content: res[prop].content
           });
         }
+        console.log(this.notes);
         page.getViewById("lv_notes").refresh();
       },
       err => {
