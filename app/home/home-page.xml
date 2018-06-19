@@ -26,7 +26,7 @@ https://docs.nativescript.org/ui/components.
             <Label class="text-center font-weight-bold" text="There are no notes yet. Create one?" />
             <Button text="Add note" class="btn" tap="add" />
         </StackLayout>
-        <ListView items="{{ notes }}" itemTap="onItemTap">
+        <ListView items="{{ notes }}" itemTap="onItemTap" id="lv_notes">
             <ListView.itemTemplate>
                 <GridLayout class='note-container' rows="*, 4*" columns="*">
                     <Label class='note-title' text="{{ title }}" textWrap="true" />

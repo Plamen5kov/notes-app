@@ -11,7 +11,7 @@ function truncateContent(content) {
 }
 
 class HomeViewModel extends Observable {
-  constructor() {
+  constructor(page) {
     super();
     this.avatarUrl = getString(CONSTANTS.CURRENT_AVATAR_URL);
     this.userName = getString(CONSTANTS.CURRENT_USER_NAME);
@@ -27,7 +27,7 @@ class HomeViewModel extends Observable {
             content: res[prop].content
           });
         }
-        console.log(this.notes);
+        page.getViewById("lv_notes").refresh();
       },
       err => {
         console.log(err);

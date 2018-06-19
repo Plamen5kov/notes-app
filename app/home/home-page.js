@@ -6,7 +6,7 @@ let homeViewModel;
 
 function onNavigatingTo(args) {
   const page = args.object;
-  homeViewModel = new HomeViewModel();
+  homeViewModel = new HomeViewModel(page);
   page.bindingContext = homeViewModel;
 }
 
