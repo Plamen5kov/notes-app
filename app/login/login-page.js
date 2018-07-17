@@ -60,6 +60,9 @@ function googleSignIn() {
     navigateToPath("home/home-page");
     loaderHide();
     showSuccess("Successfully logged in with google!");
+  }, err => {
+    loaderHide();
+    showError("Failed to login with Google. Err: " + err);
   });
 }
 

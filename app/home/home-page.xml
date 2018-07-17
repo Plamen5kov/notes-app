@@ -15,8 +15,8 @@ https://docs.nativescript.org/ui/components.
             <ActionItem ios.systemIcon="16" android.systemIcon="ic_subtract" ios.position="right" text="login">
                 <Image src="{{avatarUrl}}" class="avatar" height="30" padding="4"/>
             </ActionItem>
-            <ActionItem tap="add" ios.systemIcon="16" android.systemIcon="ic_add" ios.position="right" text="add note"></ActionItem>
-            <ActionItem tap="logout" ios.systemIcon="16" android.systemIcon="ic_add" ios.position="right" text="logout" android.position="popup"></ActionItem>
+            <ActionItem tap="add" android.systemIcon="ic_add" ios.position="right" text="New"></ActionItem>
+            <ActionItem tap="logout" android.systemIcon="ic_add" ios.position="right" text="logout" android.position="popup"></ActionItem>
         </ActionBar>
     </Page.actionBar>
 
@@ -29,7 +29,7 @@ https://docs.nativescript.org/ui/components.
             <Label class="text-center font-weight-bold" text="There are no notes yet. Create one?" />
             <Button text="Add note" class="btn" tap="add" />
         </StackLayout>
-        <ListView class='notes-list' items="{{ notes }}" itemTap="onItemTap" id="lv_notes">
+        <ListView style="height: 100%" class='notes-list' items="{{ notes }}" itemTap="onItemTap" id="lv_notes">
             <ListView.itemTemplate>
             <StackLayout>
                 <GridLayout class='note-container' rows="*, 4*" columns="*">
