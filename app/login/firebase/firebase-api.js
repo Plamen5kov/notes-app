@@ -11,8 +11,18 @@ let firebaseInitialized = false;
 
 function firebaseInit() {
   if (!firebaseInitialized) {
+    console.log("init firebase");
     init({
-      persist: true
+      persist: true,
+
+      onMessageReceivedCallback: function(message) {
+        alert("Push message received");
+        alert("Pesho sends his regards!");
+        console.log("Title: " + message.title);
+        console.log("Body: " + message.body);
+        // if your server passed a custom property called 'foo', then do this:
+        console.log("Value of 'foo': " + message.data.foo);
+      }
     });
     firebaseInitialized = true;
   }
